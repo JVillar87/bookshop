@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gestió de Llibres</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>📚 Gestió de llibres</h1>
+  </header>
+
+  <section id="formSection" class="hidden">
+    <input type="hidden" id="bookId">
+    <input type="text" id="title" placeholder="Títol">
+    <input type="text" id="author" placeholder="Autor">
+    <input type="number" id="year" placeholder="Any">
+    <button id="addButton">Guardar</button>
+  </section>
+
+  <main id="cardsContainer"></main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
