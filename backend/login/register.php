@@ -14,25 +14,28 @@ if ($username === '' || $password === '') {
 }
 
 try {
-    $connection = getDataBooks() or die("Error connexió");
+    $connection = getDataBooks();
     $safeUsername = $connection->real_escape_string($username);
-    $sql = "SELECT username FROM users WHERE username='{$safeUsername}' LIMIT 1";
-    $result = $connection->query($sql);
-    $existingUser = $result->fetch_assoc();
+    $safePassword = $connection->real_escape_string($password);
+
+    $checkSql = "SELECT id FROM users WHERE username = '{$safeUsername}' LIMIT 1";
+    $checkResult = $connection->query($checkSql);
+    $existingUser = $checkResult ? $checkResult->fetch_assoc() : null;
 
     if ($existingUser) {
-        echo json_encode(["success" => false, "message" => "Usuari ja existeix"]);
-        exit();
+        echo json_encode(["success" => false, "message" => "L'usuario ja existeix"]);
+        $connection->close();
+        exit;
     }
 
-    $sqlInsert = "INSERT INTO users (username, password) VALUES ('{$safeUsername}', '{$password}')";
-    if ($connection->query($sqlInsert) === TRUE) {
-        echo json_encode(["success" => true]);
-    } else {
-        echo json_encode(["success" => false, "message" => "Error al registrar usuari"]);
+    $insertSql = "INSERT INTO users (username, password) VALUES ('{$safeUsername}', '{$safePassword}')";
+    if (!$connection->query($insertSql)) {
+        throw new RuntimeException("Error d'alta");
     }
 
     $connection->close();
+
+    echo json_encode(["success" => true, "message" => "Usuario registrat amb éxit"]);
 } catch (Throwable $e) {
-    echo json_encode(["success" => false, "message" => "Error de connexió a la base de dades"]);
+    echo json_encode(["success" => false, "message" => "Usuario no registrat"]);
 }

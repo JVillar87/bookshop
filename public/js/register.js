@@ -5,7 +5,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     const password = document.getElementById("password").value;
     const message = document.getElementById("message");
 
-    const response = await fetch("../backend/register.php", {
+    const response = await fetch("../backend/login/register.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })

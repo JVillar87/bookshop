@@ -4,7 +4,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch("../backend/login.php", {
+    const response = await fetch("../backend/login/login.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })
@@ -13,7 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (data.success) {
-        window.location.href = "app.html";
+        window.location.href = "index.html";
     } else {
         alert("Credenciales incorrectas. Inténtalo de nuevo.");
     }

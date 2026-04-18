@@ -1,18 +1,18 @@
 <?php
 session_start();
-require "data_config.php";
+require "./data_config.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 $username = $data['username'];
 $password = $data['password'];
 
 if ($username === '' || $password === '') {
-    echo json_encode(["success" => false, "message" => "Usuari and contrasenya han de ser omplerts" ]);
+    echo json_encode(["success" => false, "message" => "Usuari and contrasenya han de ser omplerts"]);
     exit();
 }
 
 try {
-    $connection = getDataBooks() or die("Error de connexió");
+    $connection = getDataBooks();
     $safeUsername = $connection->real_escape_string($username);
     $sql = "SELECT username, password FROM users WHERE username='{$safeUsername}' LIMIT 1";
     $result = $connection->query($sql);
