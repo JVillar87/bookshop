@@ -9,7 +9,7 @@ $username = trim($data['username'] ?? '');
 $password = $data['password'] ?? '';
 
 if ($username === '' || $password === '') {
-    echo json_encode(["success" => false, "message" => "Usuari and contrasenya han de ser omplerts"]);
+    echo json_encode(["success" => false, "message" => "Usuari i contrasenya han de ser omplerts"]);
     exit();
 }
 
