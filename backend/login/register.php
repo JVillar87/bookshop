@@ -23,7 +23,7 @@ try {
     $existingUser = $checkResult ? $checkResult->fetch_assoc() : null;
 
     if ($existingUser) {
-        echo json_encode(["success" => false, "message" => "L'usuario ja existeix"]);
+        echo json_encode(["success" => false, "message" => "L'usuari ja existeix"]);
         $connection->close();
         exit;
     }
@@ -35,7 +35,7 @@ try {
 
     $connection->close();
 
-    echo json_encode(["success" => true, "message" => "Usuario registrat amb éxit"]);
+    echo json_encode(["success" => true, "message" => "Usuari registrat amb éxit"]);
 } catch (Throwable $e) {
-    echo json_encode(["success" => false, "message" => "Usuario no registrat"]);
+    echo json_encode(["success" => false, "message" => "Usuari no registrat"]);
 }
