@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     if (data.success) {
         window.location.href = "index.html";
     } else {
-        alert("Credenciales incorrectas. Inténtalo de nuevo.");
+        alert("Credencials incorrectes. Intenta-ho de nou.");
     }
 
 });
